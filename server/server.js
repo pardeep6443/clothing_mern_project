@@ -38,7 +38,7 @@ app.use(cors(corsOptions));*/
 
 app.use(
   cors({
-    origin: process.env.CLIENT_BASE_URL,
+    origin: "https://clothing-mern.netlify.app",
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
