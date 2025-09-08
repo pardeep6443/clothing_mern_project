@@ -38,7 +38,7 @@ app.use(cors(corsOptions));*/
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://clothing-mern.netlify.app"],
+    origin: "https://clothing-mern.netlify.app",
     methods: ["GET", "POST", "DELETE", "PUT"],
   /*  headers: {
     "Access-Control-Allow-Origin": "*",
@@ -54,6 +54,7 @@ app.use(
     credentials: true,
   })
 );
+app.options("*", cors());
 
 
 app.use(cookieParser());
