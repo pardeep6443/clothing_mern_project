@@ -89,7 +89,7 @@ const loginUser = async (req, res) => {
         id: checkUser._id,
         userName: checkUser.userName,
       },
-    }),
+    })
   } catch (e) {
     console.log(e);
     res.status(500).json({
