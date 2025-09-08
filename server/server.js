@@ -32,6 +32,10 @@ app.use(
   cors({
     origin: process.env.CLIENT_BASE_URL,
     methods: ["GET", "POST", "DELETE", "PUT"],
+    headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  },
     allowedHeaders: [
       "Content-Type",
       "Authorization",
