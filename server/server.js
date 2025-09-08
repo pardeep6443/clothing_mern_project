@@ -38,7 +38,7 @@ app.use(cors(corsOptions));*/
 
 app.use(
   cors({
-    origin: process.env.CLIENT_BASE_URL,
+    origin: ["http://localhost:5173", "https://clothing-mern.netlify.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
   /*  headers: {
     "Access-Control-Allow-Origin": "*",
