@@ -50,8 +50,7 @@ export function FeaturedCollections() {
                     <img
                       src={collection.image}
                       alt={collection.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     
@@ -106,8 +105,7 @@ export function FeaturedCollections() {
                   <img
                     src={collection.image}
                     alt={collection.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "@/config/api";
 
 const initialState = {
   isLoading: false,
@@ -9,19 +10,26 @@ const initialState = {
 
 export const fetchAllFilteredProducts = createAsyncThunk(
   "/products/fetchAllProducts",
-  async ({ filterParams, sortParams }) => {
-    console.log(fetchAllFilteredProducts, "fetchAllFilteredProducts");
+  async ({ filterParams = {}, sortParams = "price-lowtohigh" }) => {
+    const queryObj = {};
+    if (filterParams && typeof filterParams === "object") {
+      for (const [key, value] of Object.entries(filterParams)) {
+        if (Array.isArray(value) && value.length > 0) {
+          queryObj[key] = value.join(",");
+        } else if (typeof value === "string" && value.trim()) {
+          queryObj[key] = value.trim();
+        }
+      }
+    }
+    if (sortParams) {
+      queryObj.sortBy = sortParams;
+    }
 
-    const query = new URLSearchParams({
-      ...filterParams,
-      sortBy: sortParams,
-    });
+    const query = new URLSearchParams(queryObj).toString();
 
     const result = await axios.get(
-      `${import.meta.env.VITE_API_URL}/api/shop/products/get?${query}`
+      `${API_URL}/api/shop/products/get${query ? `?${query}` : ""}`
     );
-
-    console.log(result);
 
     return result?.data;
   }
@@ -31,7 +39,7 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const result = await axios.get(
-      `${import.meta.env.VITE_API_URL}/api/shop/products/get/${id}`
+      `${API_URL}/api/shop/products/get/${id}`
     );
 console.log(result)
     return result?.data;
@@ -53,7 +61,14 @@ const shoppingProductSlice = createSlice({
       })
       .addCase(fetchAllFilteredProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.productList = action.payload.data;
+        const rawList = Array.isArray(action.payload?.data) ? action.payload.data : [];
+        const seen = new Set();
+        state.productList = rawList.filter((item) => {
+          const id = item?._id || item?.id;
+          if (!id || seen.has(id)) return false;
+          seen.add(id);
+          return true;
+        });
       })
       .addCase(fetchAllFilteredProducts.rejected, (state, action) => {
         state.isLoading = false;

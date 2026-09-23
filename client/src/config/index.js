@@ -56,27 +56,14 @@ export const addProductFormElements = [
   {
     label: "Category",
     name: "category",
-    componentType: "select",
-    options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
-    ],
+    componentType: "category-manager",
   },
   {
-    label: "Brand",
+    label: "Brand / Collection Line (Optional)",
     name: "brand",
-    componentType: "select",
-    options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
-    ],
+    componentType: "input",
+    type: "text",
+    placeholder: "Optional brand or collection line",
   },
   {
     label: "Price",
@@ -99,6 +86,24 @@ export const addProductFormElements = [
     type: "number",
     placeholder: "Enter total stock",
   },
+  {
+    label: "Available Sizes",
+    name: "sizes",
+    componentType: "size-selector",
+  },
+  {
+    label: "Pre-Order Product",
+    name: "isPreOrder",
+    componentType: "checkbox",
+    placeholder: "Enable pre-order status for this upcoming product",
+  },
+  {
+    label: "Estimated Release / Shipping Date",
+    name: "preOrderReleaseDate",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., November 2026 or Dec 15, 2026",
+  },
 ];
 
 export const shoppingViewHeaderMenuItems = [
@@ -115,33 +120,28 @@ export const shoppingViewHeaderMenuItems = [
   {
     id: "men",
     label: "Men",
-    path: "/shop/listing/?category=men",
+    path: "/shop/listing?category=men",
   },
   {
     id: "women",
     label: "Women",
-    path: "/shop/listing",
+    path: "/shop/listing?category=women",
   },
-  // {
-  //   id: "kids",
-  //   label: "Kids",
-  //   path: "/shop/listing",
-  // },
-  // {
-  //   id: "footwear",
-  //   label: "Footwear",
-  //   path: "/shop/listing",
-  // },
-  // {
-  //   id: "accessories",
-  //   label: "Accessories",
-  //   path: "/shop/listing",
-  // },
-  // {
-  //   id: "search",
-  //   label: "Search",
-  //   path: "/shop/search",
-  // },
+  {
+    id: "kids",
+    label: "Kids",
+    path: "/shop/listing?category=kids",
+  },
+  {
+    id: "accessories",
+    label: "Accessories",
+    path: "/shop/listing?category=accessories",
+  },
+  {
+    id: "footwear",
+    label: "Footwear",
+    path: "/shop/listing?category=footwear",
+  },
 ];
 
 export const categoryOptionsMap = {
@@ -168,14 +168,6 @@ export const filterOptions = {
     { id: "kids", label: "Kids" },
     { id: "accessories", label: "Accessories" },
     { id: "footwear", label: "Footwear" },
-  ],
-  brand: [
-    { id: "nike", label: "Nike" },
-    { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
-    { id: "levi", label: "Levi's" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
   ],
 };
 

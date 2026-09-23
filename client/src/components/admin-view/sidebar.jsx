@@ -3,6 +3,7 @@ import {
   ChartNoAxesCombined,
   LayoutDashboard,
   ShoppingBasket,
+  TicketPercent,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +27,12 @@ const adminSidebarMenuItems = [
     label: "Orders",
     path: "/admin/orders",
     icon: <BadgeCheck />,
+  },
+  {
+    id: "coupons",
+    label: "Coupons",
+    path: "/admin/coupons",
+    icon: <TicketPercent />,
   },
 ];
 
@@ -60,9 +67,9 @@ function AdminSideBar({ open, setOpen }) {
         <SheetContent side="left" className="w-64">
           <div className="flex flex-col h-full">
             <SheetHeader className="border-b">
-              <SheetTitle className="flex gap-2 mt-5 mb-5">
+              <SheetTitle className="flex gap-2 mt-5 mb-5 items-center">
                 <ChartNoAxesCombined size={30} />
-                <h1 className="text-2xl font-extrabold">Admin Panel</h1>
+                <span className="text-2xl font-extrabold">Admin Panel</span>
               </SheetTitle>
             </SheetHeader>
             <MenuItems setOpen={setOpen} />
