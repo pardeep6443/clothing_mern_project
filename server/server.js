@@ -34,11 +34,23 @@ const PORT = process.env.PORT || 5000;
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));*/
+const cors = require('cors');
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://clothing-mern.netlify.app' // Replace with your exact Netlify domain
+];
 
 app.use(
   cors({
-    origin: "https://clothing-mern.netlify.app",
+   origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Blocked by CORS'));
+    }
+  },
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
