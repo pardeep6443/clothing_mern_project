@@ -134,8 +134,13 @@ const logoutUser = (req, res) => {
 // };
 
 const authMiddleware = async (req, res, next) => {
+  let token = req.cookies?.token;
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]
+  // const token = authHeader && authHeader.split(' ')[1]
+  if (!token && authHeader && authHeader.startsWith("Bearer ")) {
+    token = authHeader.split(" ")[1];
+  }
+
   if (!token)
     return res.status(401).json({
       success: false,
@@ -143,7 +148,7 @@ const authMiddleware = async (req, res, next) => {
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = jwt.verify(token, process.env.CLIENT_SECRET_KEY);
     req.user = decoded;
     next();
   } catch (error) {
