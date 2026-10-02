@@ -38,7 +38,7 @@ app.use(cors(corsOptions));*/
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://clothing-mern.netlify.app/'// Replace with your exact Netlify domain
+  'https://clothing-mern.netlify.app'// Replace with your exact Netlify domain
 ];
 
 app.use(
