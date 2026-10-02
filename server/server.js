@@ -34,7 +34,6 @@ const PORT = process.env.PORT || 5000;
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));*/
-const cors = require('cors');
 
 const allowedOrigins = [
   'http://localhost:5173',
