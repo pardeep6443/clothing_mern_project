@@ -114,7 +114,7 @@ const logoutUser = (req, res) => {
 };
 
 //auth middleware
-/*const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token)
     return res.status(401).json({
@@ -132,7 +132,7 @@ const logoutUser = (req, res) => {
       message: "Unauthorised user!",
     });
   }
-};*/
+};
 
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
